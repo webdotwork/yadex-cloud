@@ -50,7 +50,7 @@
 1. Terraform сконфигурирован и создание инфраструктуры посредством Terraform возможно без дополнительных ручных действий.
 2. Полученная конфигурация инфраструктуры является предварительной, поэтому в ходе дальнейшего выполнения задания возможны изменения.
 
-## Установка минимального набора ПО
+## Terraform сконфигурирован для создания инфраструктуры 
 ```shell script
 {   
     cd /terraform
@@ -60,11 +60,8 @@
     terraform apply -auto-approve
 }
 ```
-
-image.png
-image.png
-image.png
-
+![image](https://user-images.githubusercontent.com/40559167/226113375-50e3077e-bd60-43e6-b588-bdf6771d5bd8.png)
+![image](https://user-images.githubusercontent.com/40559167/226113392-48e39563-0074-47c3-87d7-1867f64e84e0.png)
 ---
 ### Создание Kubernetes кластера
 

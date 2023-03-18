@@ -83,7 +83,7 @@
 2. В файле `~/.kube/config` находятся данные для доступа к кластеру.
 3. Команда `kubectl get pods --all-namespaces` отрабатывает без ошибок.
 
-### Доступ к управлению кластером под root
+### Деплой кластера
 ```shell script
 # Длz деплоя кластера используем kubespray
 {
@@ -169,8 +169,6 @@ monitoring     prometheus-k8s-0                          2/2     Running   0    
 monitoring     prometheus-k8s-1                          2/2     Running   0          11h
 monitoring     prometheus-operator-65ff8b668d-kk25q      2/2     Running   0          11h
 ```
-```
----
 ### Создание тестового приложения
 
 Для перехода к следующему этапу необходимо подготовить тестовое приложение, эмулирующее основное приложение разрабатываемое вашей компанией.
@@ -188,14 +186,16 @@ monitoring     prometheus-operator-65ff8b668d-kk25q      2/2     Running   0    
 1. Git репозиторий с тестовым приложением и Dockerfile.
 2. Регистр с собранным docker image. В качестве регистра может быть DockerHub или [Yandex Container Registry](https://cloud.yandex.ru/services/container-registry), созданный также с помощью terraform.
 ```
+```
 ### Git репозиторий с тестовым приложением и Dockerfile.
-
-
+https://github.com/webdotwork/yadex-cloud/tree/main/app
+```
 ```
 ### Регистр с собранным docker image. В качестве регистра может быть DockerHub
 https://hub.docker.com/r/webdotwork/app_app
 ```
 ---
+```
 ### Подготовка cистемы мониторинга и деплой приложения
 
 Уже должны быть готовы конфигурации для автоматического создания облачной инфраструктуры и поднятия Kubernetes кластера.  

@@ -1,0 +1,20 @@
+#cloud-config
+#
+# A common use-case for cloud-init is to bootstrap user and ssh
+# settings to be managed by a remote configuration management tool,
+# such as ansible.
+#
+# This example assumes a default Ubuntu cloud image, which should contain
+# the required software to be managed remotely by Ansible.
+#
+ssh_pwauth: false
+
+users:
+- name: www
+  gecos: Ansible User
+  groups: users,admin,wheel
+  sudo: ALL=(ALL) NOPASSWD:ALL
+  shell: /bin/bash
+  lock_passwd: true
+  ssh_authorized_keys:
+    - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDjn5jBCw/KdUymKkYS6mhXr+mjhrxzjFxzjfQ4FueNG9PBLqIaCGOYbjHtvMUfR1SfG2f+idCvWC31AJOJCALb8OTa6viXZKHjWIWnSrJJDW5hM4gjncwPsmVL4b2PEFngHG85hHBWP2ljYf0VrzcUntCEebF82k1vUkYQ3HOL5NYipWa6FQgRg8WucuXOxN+PRdpGs3WXUwY87ByiOgu8ql+FG3uktoKqBVSQnbsuxPeebs+yFvxyqiz3/m0XChKr3X/fGybWd5bYKvp3G6z5//HNqe4h82/GA2uO1wdpkgCBtah780knMMfeB5XOkpq5zRnNZ4/awx/AamcLDSPzCYnM2gTRYWQkaKI3W/uTiYrIo4ftRKJUQSY2CKAIfx/VIBJRFgWlArdHgKRAMJTEFMqQIbc3rHARXzQoDDe6Y58x8bfVbSJkFMEHYtjk+7QUjWzFLKy1NQmzsSv00qUVjhqMsu72jIrJz+cZxhJy69Z61MIVZiRTtgDQOefT++k= www@www"

@@ -215,6 +215,19 @@ https://hub.docker.com/r/webdotwork/app_app
 3. Дашборды в grafana отображающие состояние Kubernetes кластера.
 4. Http доступ к тестовому приложению.
 
+###  Git репозиторий с конфигурационными файлами для настройки Kubernetes.
+https://github.com/webdotwork/yadex-cloud/tree/main/app-chart
+
+### Http доступ к web интерфейсу grafana
+![image](https://user-images.githubusercontent.com/40559167/226114349-87682ef5-ce99-4ffd-a578-10c6ef5ec07b.png)
+
+## Дашборды в grafana отображающие состояние Kubernetes кластера.
+[screencapture-localhost-56702-d-200ac8fdbfbb74b39aff88118e4d1c2c-kubernetes-compute-resources-node-pods-2023-03-18-18_07_38.pdf](https://github.com/webdotwork/yadex-cloud/files/11008862/screencapture-localhost-56702-d-200ac8fdbfbb74b39aff88118e4d1c2c-kubernetes-compute-resources-node-pods-2023-03-18-18_07_38.pdf)
+[screencapture-localhost-56702-d-efa86fd1d0c121a26444b636a3f509a8-kubernetes-compute-resources-cluster-2023-03-18-18_06_46.pdf](https://github.com/webdotwork/yadex-cloud/files/11008863/screencapture-localhost-56702-d-efa86fd1d0c121a26444b636a3f509a8-kubernetes-compute-resources-cluster-2023-03-18-18_06_46.pdf)
+
+## Http доступ к тестовому приложению.
+
+
 ---
 ### Установка и настройка CI/CD
 

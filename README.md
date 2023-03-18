@@ -185,17 +185,13 @@ monitoring     prometheus-operator-65ff8b668d-kk25q      2/2     Running   0    
 
 1. Git репозиторий с тестовым приложением и Dockerfile.
 2. Регистр с собранным docker image. В качестве регистра может быть DockerHub или [Yandex Container Registry](https://cloud.yandex.ru/services/container-registry), созданный также с помощью terraform.
-```
-```
+
 ### Git репозиторий с тестовым приложением и Dockerfile.
 https://github.com/webdotwork/yadex-cloud/tree/main/app
-```
-```
+
 ### Регистр с собранным docker image. В качестве регистра может быть DockerHub
 https://hub.docker.com/r/webdotwork/app_app
-```
 ---
-```
 ### Подготовка cистемы мониторинга и деплой приложения
 
 Уже должны быть готовы конфигурации для автоматического создания облачной инфраструктуры и поднятия Kubernetes кластера.  

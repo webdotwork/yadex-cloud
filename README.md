@@ -127,7 +127,7 @@ users:
 
 ### Команда `kubectl get pods --all-namespaces` отрабатывает без ошибок.
 ```shell
-www@www:~/Desktop/CI/sl/other_service/kubernetes/helm$ sudo kubectl get po -A
+www@www:~/Desktop/devops-diplom-yandexcloud$  sudo kubectl get po -A
 NAMESPACE     NAME                                                READY   STATUS    RESTARTS      AGE
 argocd        argocd-application-controller-0                     1/1     Running   0             11h
 argocd        argocd-applicationset-controller-676749c97d-8z5dd   1/1     Running   0             11h
@@ -186,12 +186,19 @@ monitoring    prometheus-operator-65ff8b668d-ms76c                2/2     Runnin
 
 ### Git репозиторий с тестовым приложением и Dockerfile.
 https://github.com/webdotwork/yadex-cloud/tree/main/app
+
 https://itlab.gitlab.yandexcloud.net/webdotwork/devops.git
 
 ### Регистр с собранным docker image. В качестве регистра может быть DockerHub
 https://hub.docker.com/r/webdotwork/app_app
-itlab.gitlab.yandexcloud.net:5050/webdotwork/devops/master:caa4e832
+![image](https://user-images.githubusercontent.com/40559167/228160684-a5819e37-07a6-4360-8782-f2be432ab901.png)
+
+https://itlab.gitlab.yandexcloud.net/webdotwork/devops/container_registry/3?orderBy=NAME&sort=asc&search%5B%5D=caa&search%5B%5D=
+![image](https://user-images.githubusercontent.com/40559167/228160492-87c6cdb3-913a-462a-96dd-71641ae42007.png)
+
 cr.yandex/crpe9jjj2fi85t0c29b6/hello:gitlab-546a3cd2
+![image](https://user-images.githubusercontent.com/40559167/228160877-2a0e8389-1bb1-4ab0-a534-e29a61ddec6c.png)
+
 ---
 ### Подготовка cистемы мониторинга и деплой приложения
 
@@ -245,8 +252,22 @@ http://51.250.22.4:30557/
 Ожидаемый результат:
 
 1. Интерфейс ci/cd сервиса доступен по http.
+
+https://itlab.gitlab.yandexcloud.net/webdotwork/devops
+![image](https://user-images.githubusercontent.com/40559167/228161125-97c21ab7-ab04-48ab-908e-714314e39755.png)
+
+
 2. При любом коммите в репозиторие с тестовым приложением происходит сборка и отправка в регистр Docker образа.
+
+![image](https://user-images.githubusercontent.com/40559167/228161450-f5e5007a-45d4-4403-aa64-cf2802032134.png)
+![image](https://user-images.githubusercontent.com/40559167/228161536-eff3d548-eacf-4d54-915b-283229004c1c.png)
+
 3. При создании тега (например, v1.0.0) происходит сборка и отправка с соответствующим label в регистр, а также деплой соответствующего Docker образа в кластер Kubernetes.
+
+![image](https://user-images.githubusercontent.com/40559167/228161851-0e6a2a65-2f0e-48e3-9157-2668ec819d9c.png)
+
+Для автоматизации процеса доставки новой версии приложения используем ArgoCD
+![image](https://user-images.githubusercontent.com/40559167/228166577-fb22d14d-dd96-434e-9837-636d3266f8ba.png)
 
 ---
 ## Что необходимо для сдачи задания?

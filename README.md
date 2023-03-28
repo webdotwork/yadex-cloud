@@ -108,7 +108,7 @@ apiVersion: v1
 clusters:
 - cluster:
     certificate-authority-data: 
-    server: https://62.84.118.238:6443
+    server: https://158.160.58.54:6443
   name: cluster.local
 contexts:
 - context:
@@ -127,47 +127,45 @@ users:
 
 ### Команда `kubectl get pods --all-namespaces` отрабатывает без ошибок.
 ```shell
-www@www:~/Desktop/devops-diplom-yandexcloud$ sudo kubectl get po -A
-NAMESPACE      NAME                                      READY   STATUS    RESTARTS   AGE
-default        app-65b95ccc6c-mkdzj                      1/1     Running   0          11h
-kube-system    calico-kube-controllers-d6484b75c-znr42   1/1     Running   0          12h
-kube-system    calico-node-9xv5b                         1/1     Running   0          12h
-kube-system    calico-node-nzqbh                         1/1     Running   0          12h
-kube-system    calico-node-rp8qh                         1/1     Running   0          12h
-kube-system    coredns-588bb58b94-pzwr9                  1/1     Running   0          12h
-kube-system    coredns-588bb58b94-vb8mn                  1/1     Running   0          12h
-kube-system    dns-autoscaler-5b9959d7fc-hxvjw           1/1     Running   0          12h
-kube-system    kube-apiserver-node1                      1/1     Running   1          12h
-kube-system    kube-controller-manager-node1             1/1     Running   1          12h
-kube-system    kube-proxy-7fdvw                          1/1     Running   0          12h
-kube-system    kube-proxy-kgpxq                          1/1     Running   0          12h
-kube-system    kube-proxy-s9zqn                          1/1     Running   0          12h
-kube-system    kube-scheduler-node1                      1/1     Running   1          12h
-kube-system    metrics-server-5c9dd56466-cbrc2           1/1     Running   0          12h
-kube-system    nginx-proxy-node2                         1/1     Running   0          12h
-kube-system    nginx-proxy-node3                         1/1     Running   0          12h
-kube-system    nodelocaldns-jqr8m                        1/1     Running   0          12h
-kube-system    nodelocaldns-q59l2                        1/1     Running   0          12h
-kube-system    nodelocaldns-v8nwx                        1/1     Running   0          12h
-lens-metrics   kube-state-metrics-6f4bcbc58b-kgqvt       1/1     Running   0          12h
-lens-metrics   node-exporter-575b2                       1/1     Running   0          12h
-lens-metrics   node-exporter-5wbjs                       1/1     Running   0          12h
-lens-metrics   node-exporter-9x2s2                       1/1     Running   0          12h
-lens-metrics   prometheus-0                              1/1     Running   0          12h
-monitoring     alertmanager-main-0                       2/2     Running   0          11h
-monitoring     alertmanager-main-1                       2/2     Running   0          11h
-monitoring     alertmanager-main-2                       2/2     Running   0          11h
-monitoring     blackbox-exporter-6fd586b445-n4d2l        3/3     Running   0          11h
-monitoring     grafana-58bbb48f66-zblbv                  1/1     Running   0          11h
-monitoring     kube-state-metrics-787856b689-sknmg       3/3     Running   0          11h
-monitoring     node-exporter-4w4fj                       2/2     Running   0          11h
-monitoring     node-exporter-n597s                       2/2     Running   0          11h
-monitoring     node-exporter-stxv4                       2/2     Running   0          11h
-monitoring     prometheus-adapter-77f56b865b-5dtqx       1/1     Running   0          11h
-monitoring     prometheus-adapter-77f56b865b-shpkd       1/1     Running   0          11h
-monitoring     prometheus-k8s-0                          2/2     Running   0          11h
-monitoring     prometheus-k8s-1                          2/2     Running   0          11h
-monitoring     prometheus-operator-65ff8b668d-kk25q      2/2     Running   0          11h
+www@www:~/Desktop/CI/sl/other_service/kubernetes/helm$ sudo kubectl get po -A
+NAMESPACE     NAME                                                READY   STATUS    RESTARTS      AGE
+argocd        argocd-application-controller-0                     1/1     Running   0             11h
+argocd        argocd-applicationset-controller-676749c97d-8z5dd   1/1     Running   0             11h
+argocd        argocd-dex-server-68fdffbdb6-rhh5v                  1/1     Running   0             11h
+argocd        argocd-notifications-controller-56578cd466-5pq92    1/1     Running   0             11h
+argocd        argocd-redis-8f7689686-2rcsz                        1/1     Running   0             11h
+argocd        argocd-repo-server-658b549674-qgsmg                 1/1     Running   0             11h
+argocd        argocd-server-5b69986577-gflrn                      1/1     Running   0             11h
+default       app-app-chart-c4dd5f584-grgr6                       1/1     Running   0             10h
+default       pod-with-error                                      1/1     Running   0             12h
+kube-system   calico-kube-controllers-d6484b75c-2k8sm             1/1     Running   0             16h
+kube-system   calico-node-t7pd5                                   1/1     Running   0             16h
+kube-system   calico-node-vz5nx                                   1/1     Running   0             16h
+kube-system   coredns-588bb58b94-hqlzd                            1/1     Running   0             16h
+kube-system   coredns-588bb58b94-mnhlz                            1/1     Running   0             16h
+kube-system   dns-autoscaler-5b9959d7fc-vhz6s                     1/1     Running   0             16h
+kube-system   kube-apiserver-node1                                1/1     Running   1             16h
+kube-system   kube-controller-manager-node1                       1/1     Running   3 (16h ago)   16h
+kube-system   kube-proxy-924md                                    1/1     Running   0             16h
+kube-system   kube-proxy-llnlp                                    1/1     Running   0             16h
+kube-system   kube-scheduler-node1                                1/1     Running   2 (16h ago)   16h
+kube-system   metrics-server-5c9dd56466-9fjcr                     1/1     Running   1 (16h ago)   16h
+kube-system   nginx-proxy-node2                                   1/1     Running   0             16h
+kube-system   nodelocaldns-gzrg4                                  1/1     Running   0             16h
+kube-system   nodelocaldns-qpd74                                  1/1     Running   0             16h
+monitoring    alertmanager-main-0                                 2/2     Running   0             11h
+monitoring    alertmanager-main-1                                 2/2     Running   0             11h
+monitoring    alertmanager-main-2                                 2/2     Running   0             11h
+monitoring    blackbox-exporter-6fd586b445-x7l9s                  3/3     Running   0             11h
+monitoring    grafana-58bbb48f66-sbzgk                            1/1     Running   0             11h
+monitoring    kube-state-metrics-9c686fb69-dsp5p                  3/3     Running   0             11h
+monitoring    node-exporter-qfkpf                                 2/2     Running   0             11h
+monitoring    node-exporter-rvlgv                                 2/2     Running   0             11h
+monitoring    prometheus-adapter-77f56b865b-qfkvp                 1/1     Running   0             11h
+monitoring    prometheus-adapter-77f56b865b-wrhwm                 1/1     Running   0             11h
+monitoring    prometheus-k8s-0                                    2/2     Running   0             11h
+monitoring    prometheus-k8s-1                                    2/2     Running   0             11h
+monitoring    prometheus-operator-65ff8b668d-ms76c                2/2     Running   0             11h
 ```
 ### Создание тестового приложения
 
@@ -188,9 +186,12 @@ monitoring     prometheus-operator-65ff8b668d-kk25q      2/2     Running   0    
 
 ### Git репозиторий с тестовым приложением и Dockerfile.
 https://github.com/webdotwork/yadex-cloud/tree/main/app
+https://itlab.gitlab.yandexcloud.net/webdotwork/devops.git
 
 ### Регистр с собранным docker image. В качестве регистра может быть DockerHub
 https://hub.docker.com/r/webdotwork/app_app
+itlab.gitlab.yandexcloud.net:5050/webdotwork/devops/master:caa4e832
+cr.yandex/crpe9jjj2fi85t0c29b6/hello:gitlab-546a3cd2
 ---
 ### Подготовка cистемы мониторинга и деплой приложения
 
@@ -219,15 +220,16 @@ https://hub.docker.com/r/webdotwork/app_app
 https://github.com/webdotwork/yadex-cloud/tree/main/app-chart
 
 ### Http доступ к web интерфейсу grafana
-![image](https://user-images.githubusercontent.com/40559167/226114349-87682ef5-ce99-4ffd-a578-10c6ef5ec07b.png)
+http://51.250.22.4:30300/login
 
 ## Дашборды в grafana отображающие состояние Kubernetes кластера.
-[screencapture-localhost-56702-d-200ac8fdbfbb74b39aff88118e4d1c2c-kubernetes-compute-resources-node-pods-2023-03-18-18_07_38.pdf](https://github.com/webdotwork/yadex-cloud/files/11008862/screencapture-localhost-56702-d-200ac8fdbfbb74b39aff88118e4d1c2c-kubernetes-compute-resources-node-pods-2023-03-18-18_07_38.pdf)
-[screencapture-localhost-56702-d-efa86fd1d0c121a26444b636a3f509a8-kubernetes-compute-resources-cluster-2023-03-18-18_06_46.pdf](https://github.com/webdotwork/yadex-cloud/files/11008863/screencapture-localhost-56702-d-efa86fd1d0c121a26444b636a3f509a8-kubernetes-compute-resources-cluster-2023-03-18-18_06_46.pdf)
+![image](https://user-images.githubusercontent.com/40559167/228157763-131d6e7f-50b1-4919-ae11-4277c7424c7e.png)
+![image](https://user-images.githubusercontent.com/40559167/228157867-2a10131d-c8f8-4c54-8ada-8efd00edb87e.png)
+![image](https://user-images.githubusercontent.com/40559167/228158109-a5088270-b0c4-40fd-988b-7143c36b490f.png)
+![image](https://user-images.githubusercontent.com/40559167/228158175-9c466d19-05b3-48cc-bdfc-59d319a077d0.png)
 
 ## Http доступ к тестовому приложению.
-
-
+http://51.250.22.4:30557/
 ---
 ### Установка и настройка CI/CD
 

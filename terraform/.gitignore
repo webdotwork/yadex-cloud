@@ -1,0 +1,12 @@
+
+*.tfstate
+*.tfstate.*
+*terraform.tfstate*
+!*.tf
+!*.tpl
+!*.gitignore
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfvars
+.terraform
+.terraform.*

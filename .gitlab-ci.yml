@@ -1,0 +1,84 @@
+variables: 
+  DOCKER_PROJECT_NAME: "devops"
+  VERSION_MAJOR: 1
+  VERSION_MINOR: 0
+  CD_CHART_REPO: app-chart
+  CD_GIT_REPOSITORY: itlab.gitlab.yandexcloud.net/webdotwork/devops.git
+  MANIFEST_FILE: Chart.yaml
+  TAG: $CI_COMMIT_SHORT_SHA
+
+stages:
+  - create
+  - deploy 
+  - build
+  - update
+
+create_cluster:
+  # defines a job stage
+  stage: create
+  # only: 
+  #   - master
+  when: manual
+# list of tags that are used to select a runner
+  tags: ['kube']
+  variables:
+    # CI_PIPELINE_ID.CI_COMMIT_SHORT_SHA
+    # pipeline jobs
+# shell script that is executed by a runner
+  script:
+    - echo "$CI_PIPELINE_IID"
+    - echo "$CI_PIPELINE_ID"
+    - cd "$CI_PROJECT_DIR/terraform/"
+    - terraform init
+    - terraform validate
+    - terraform plan
+    - terraform apply -auto-approve
+    - terraform output -json > output.json
+    - export external_ip_address_node1=$(< output.json jq -r '.external_ip_address_node1 | .value')
+    - export external_ip_address_node2=$(< output.json jq -r '.external_ip_address_node2 | .value')
+    - envsubst < "../ansible/inventory/mycluster/hosts.tmp" > "../ansible/inventory/mycluster/hosts.yaml"
+    - cd "$CI_PROJECT_DIR/ansible/"
+    - ansible-playbook -i inventory/mycluster/hosts.yaml cluster.yml -b -v
+
+build:
+  stage: build
+  when: manual
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_HOST: tcp://localhost:2375/
+  image: cr.yandex/yc/metadata-token-docker-helper:0.2
+  services:
+    - docker:19.03.1-dind
+  script:
+    - cd "$CI_PROJECT_DIR/app/"
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    # - docker build -t itlab.gitlab.yandexcloud.net:5050/webdotwork/devops .
+    # - docker push itlab.gitlab.yandexcloud.net:5050/webdotwork/devops
+    - docker build -t $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$TAG --build-arg VER="$VERSION_MAJOR.$VERSION_MINOR.$CI_PIPELINE_IID.$CI_PIPELINE_ID" .
+    - docker push $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$TAG
+    - rm -r -f ./output
+    - mkdir ./output
+    # - docker build . -t cr.yandex/crpe9jjj2fi85t0c29b6/hello:gitlab-$CI_COMMIT_SHORT_SHA
+    # - docker push cr.yandex/crpe9jjj2fi85t0c29b6/hello:gitlab-$CI_COMMIT_SHORT_SHA
+
+update_manifest:
+  stage: update
+  when: manual
+  image: gitlab/gitlab-runner
+  #when: manual
+  tags: ['kube']
+  script:
+# Git
+    - mkdir kube && cd kube
+    #- apk add --no-cache git
+    - git config --global user.name $GITLAB_USER_NAME #
+    - git config --global user.email $GITLAB_USER_EMAIL #
+    - git clone https://$KUBERNETES_USER:$KUBERNETES_PASS@$CD_GIT_REPOSITORY
+    - cd "devops/$CD_CHART_REPO"
+    - 'sed -i "s/^appVersion:.*/appVersion: $TAG/" $MANIFEST_FILE'
+    - cat $MANIFEST_FILE
+    - git add .
+    - git commit -m "Update appVersion"
+    - git push
+    - rm -rf kube

@@ -4,15 +4,15 @@ resource "yandex_compute_instance" "node1" {
   zone     = "ru-central1-a" #var.yc_region
 
   resources {
-    cores  = 4
-    memory = 4
+    cores  = 2
+    memory = 2
   }
 
   boot_disk {
     initialize_params {
       image_id = "fd8h34rub6pjpg4qgi8j" // ubuntu-1804-lts
       type     = "network-hdd"
-      size     = "40"
+      size     = "20"
     }
   }
 
@@ -37,7 +37,7 @@ resource "yandex_compute_instance" "node2" {
   zone     = "ru-central1-b" #var.yc_region
 
   resources {
-    cores  = 4
+    cores  = 2
     memory = 4
   }
 
@@ -45,7 +45,7 @@ resource "yandex_compute_instance" "node2" {
     initialize_params {
       image_id = "fd8h34rub6pjpg4qgi8j" // ubuntu-1804-lts
       type     = "network-hdd"
-      size     = "40"
+      size     = "20"
     }
   }
 
@@ -63,45 +63,13 @@ resource "yandex_compute_instance" "node2" {
   }
 }
 
-resource "yandex_compute_instance" "node3" {
-  name     = "node3"
-  hostname = "node3"
-  zone     = "ru-central1-c" #var.yc_region
-
-  resources {
-    cores  = 4
-    memory = 4
-  }
-
-  boot_disk {
-    initialize_params {
-      image_id = "fd8h34rub6pjpg4qgi8j" // ubuntu-1804-lts
-      type     = "network-hdd"
-      size     = "40"
-    }
-  }
-
-  network_interface {
-    subnet_id   = yandex_vpc_subnet.subnet30.id
-    nat         = true
-    ipv6        = false
-  }
-
-  #   metadata = {
-  #   ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
-  # }
-  metadata = {
-    user-data = "${file("meta.txt")}"
-  }
-}
-
 # resource "yandex_compute_instance" "node3" {
 #   name     = "node3"
 #   hostname = "node3"
-#   zone     = var.yc_region
+#   zone     = "ru-central1-c" #var.yc_region
 
 #   resources {
-#     cores  = 4
+#     cores  = 2
 #     memory = 4
 #   }
 
@@ -109,13 +77,45 @@ resource "yandex_compute_instance" "node3" {
 #     initialize_params {
 #       image_id = "fd8h34rub6pjpg4qgi8j" // ubuntu-1804-lts
 #       type     = "network-hdd"
-#       size     = "40"
+#       size     = "20"
 #     }
 #   }
 
 #   network_interface {
-#     subnet_id   = yandex_vpc_subnet.subnet[0].id
+#     subnet_id   = yandex_vpc_subnet.subnet30.id
+#     nat         = true
 #     ipv6        = false
+#   }
+
+#   #   metadata = {
+#   #   ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+#   # }
+#   metadata = {
+#     user-data = "${file("meta.txt")}"
+#   }
+# }
+
+# # resource "yandex_compute_instance" "node3" {
+# #   name     = "node3"
+# #   hostname = "node3"
+# #   zone     = var.yc_region
+
+# #   resources {
+# #     cores  = 4
+# #     memory = 4
+# #   }
+
+# #   boot_disk {
+# #     initialize_params {
+# #       image_id = "fd8h34rub6pjpg4qgi8j" // ubuntu-1804-lts
+# #       type     = "network-hdd"
+# #       size     = "20"
+# #     }
+# #   }
+
+# #   network_interface {
+# #     subnet_id   = yandex_vpc_subnet.subnet[0].id
+# #     ipv6        = false
 #   }
 
 #   metadata = {

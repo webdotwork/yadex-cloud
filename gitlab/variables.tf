@@ -1,5 +1,5 @@
 variable "yc_token" {
-   default = "t1.9euelZqOnZ6Wj5SOj43MlcuWjIucme3rnpWax5OVk5eQjpOWkorPm4-RnJbl9PdYTHle-e9sIGfI3fT3GHt2XvnvbCBnyM3n9euelZqUmMqak4udkI2Oy8-TjImOk-_9.b3_MU3Dt_bjDkAi8vWkDwngvJpTU4whpfGImrf1sHUGV4YfyKHHX229wv9qpwkm0d7LL_iCOVpEF7kPs6htZAw"
+   default = "t1.9euelZqYlIuVnouUnsuelp6bmZKNme3rnpWax5OVk5eQjpOWkorPm4-RnJbl8_cPcX9e-e8DZ24d_t3z908ffV757wNnbh3-zef1656VmpSYypqTi52QjY7Lz5OMiY6T7_0.l5aCH3dPwLcRSikz8SpJ70S5i2Mo_34pdetpxIlfsfgCd3h8ssLbZ6Tzed9nqlJQCE65KLUIqX4K_7jpekahCQ"
 }
 
 variable "yc_cloud_id" {
@@ -10,19 +10,17 @@ variable "yc_folder_id" {
   default = "b1g1kckip0s6fh9085gq"
 }
 
+variable "yc_region" {
+  default = "ru-central1-a"
+}
+
 variable "yc_k8_v" {
   default = "v1.25"
 }
 
 variable "yc_sa_name" {
-  default = "webdotwork"
+  default = "aje8ljlhoqlimu0dpnci"
 }
-
-variable "yc_region" {
-  default = "ru-central1-a"
-}
-
-
 # yc iam key create \
 #   --service-account-id aje8ljlhoqlimu0dpnci \
 #   --folder-name default \

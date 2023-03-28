@@ -1,10 +1,10 @@
 all:
   hosts:
     node1:
-      ansible_host: 158.160.58.54
+      ansible_host: $external_ip_address_node1
       ansible_user: www
     node2:
-      ansible_host: 84.201.153.93
+      ansible_host: $external_ip_address_node2
       ansible_user: www
     # node3:
     #   ansible_host: 84.201.145.203
